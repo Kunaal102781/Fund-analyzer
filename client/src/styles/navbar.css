@@ -1,0 +1,42 @@
+/* client/src/styles/navbar.css */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #4361ee;
+  color: white;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* client/src/styles/home.css */
+.home-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.auth-actions {
+  margin-top: 2rem;
+}
+
+.auth-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  background-color: #4361ee;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.auth-button:hover {
+  background-color: #3a56d4;
+}
