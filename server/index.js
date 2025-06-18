@@ -1,4 +1,5 @@
 // server/index.js
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -15,13 +16,23 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+// सिर्फ एक बार cors setup करो और multiple origins अगर चाहिए तो ऐसा करो:
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 
 app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true,
+  origin: function(origin, callback){
+    // Allow requests with no origin (like Postman)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
 }));
+
+app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
